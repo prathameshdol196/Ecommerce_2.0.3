@@ -1,0 +1,18 @@
+{
+    "builds": [
+        {
+            "src": "Ecommerce/wsgi.py",
+            "use": "@vercel/python",
+            "config": {
+                "maxLabdaSize": "15mb",
+                "runtime": "python3.10"
+            }
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "Ecommerce/wsgi.py"
+        }
+    ]
+}

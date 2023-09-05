@@ -55,8 +55,8 @@
                                 {% for key,value in request.session.cart.items %}
                                 <tr id="id{{ value.id }}">
                                     <td class="product-thumbnail"><a href="shop-details.html"><img
-                                            src="{{ value.featured_image }}" alt=""></a></td>
-                                    <td class="product-name"><a href="shop-details.html">{{ value.product_name }}</a></td>
+                                            src="{{ value.image }}" alt=""></a></td>
+                                    <td class="product-name"><a href="shop-details.html">{{ value.name }}</a></td>
                                     <td class="product-price"><span class="amount">₹ {{ value.price }}</span></td>
                                     <td class="product-quantity w-25">
 
@@ -105,12 +105,19 @@
                                         <li>Items <span> {{request.session.cart|length}}</span></li>
                                         <li>Packing cost <span>₹ {{ packing_cost }}</span></li>
                                         <li>Tax <span>₹ {{ tax }}</span></li>
+
                                         {% if cart_total_amount > 500 %}
                                         <li>Delivery Charge <span class="text-success"> Free </span></li>
                                         <li class="text-success">Order Total <span>₹ {{cart_total_amount|add:packing_cost|add:tax}}</span></li>
+
+                                        {% elif cart_total_amount == 0 %}
+                                        <li>Delivery Charge <span class="text-danger">₹ 0 </span></li>
+                                        <li class="text-success">Order Total <span>₹ {{cart_total_amount}}</span></li>
+
                                         {% else %}
                                         <li>Delivery Charge <span class="text-danger">₹ 120 </span></li>
                                         <li class="text-success">Order Total <span>₹ {{cart_total_amount|add:packing_cost|add:tax|add:120}}</span></li>
+
                                         {% endif %}
 
                                     </ul>

@@ -220,9 +220,12 @@ def cart_clear(request):
 
 @login_required(login_url="/accounts/login/")
 def cart_detail(request):
+
     cart = request.session.get('cart')
-    packing_cost = sum(i["packaging_cost"] for i in cart.values() if i)
+
+    packing_cost = sum(i["packing_cost"] for i in cart.values() if i)
     tax = sum(i["tax"] for i in cart.values() if i)
+
     # packaging_cost
     # tax
     # print("##########")

@@ -28,7 +28,6 @@ def HOME(request):
     main_category = Main_Category.objects.all()
 
     product = Product.objects.filter(section__name='Top Deals Of The Day')
-    print(product)
 
     context = {
         'sliders': sliders,
